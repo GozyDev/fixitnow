@@ -1,10 +1,10 @@
 "use client";
 import { useState } from "react";
-import StepOne from "@/app/(SUP)/squestion/StepOne";
-import StepTwo from "@/app/(SUP)/squestion/StepTwo";
-import StepThreeConsumer from "@/app/(SUP)/squestion/StepThreeConsumer";
-import StepFour from "@/app/(SUP)/squestion/StepFour";
-import Pparent from "@/app/(SUP)/squestion/ProvidersForm/Pparent";
+import StepOne from "@/app/(Signup)/squestion/StepOne";
+import StepTwo from "@/app/(Signup)/squestion/StepTwo";
+import StepThreeConsumer from "@/app/(Signup)/squestion/StepThreeConsumer";
+import StepFour from "@/app/(Signup)/squestion/StepFour";
+import Pparent from "@/app/(Signup)/squestion/ProvidersForm/Pparent";
 import { formDataType } from "@/lib/type";
 
 export default function signup() {
