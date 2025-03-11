@@ -8,16 +8,14 @@ import {
 } from "@heroicons/react/24/solid";
 
 interface ProviderProfilePageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
 export default async function ProviderProfilePage({
   params,
 }: ProviderProfilePageProps) {
   const provider = await prisma.providerProfile.findUnique({
-    where: { userId: params.id },
+    where: { userId: (await params).id },
     include: { user: true },
   });
 

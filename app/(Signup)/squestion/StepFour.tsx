@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { errotype } from "@/lib/type";
 // import { useRouter } from "next/navigation";
 import {
   CheckCircleIcon,
