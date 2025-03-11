@@ -17,7 +17,7 @@ export default function HomePage() {
           </h1>
           
           <p className="text-xl text-gray-600">
-            We're crafting something amazing! 
+            We are  crafting something amazing! 
             <span className="block mt-2 text-sm text-gray-500">
               Stay tuned for our official launch
             </span>

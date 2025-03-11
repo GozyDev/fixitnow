@@ -1,3 +1,6 @@
+import { Role } from '@prisma/client';
+import exp from 'constants';
+
 export type formDataType = {
   role: string;
   name: string;
@@ -14,7 +17,7 @@ export type formDataType = {
 export type PropData = {
   nextStep: () => void;
   prevStep: () => void;
-  updateFormData: (field: string, value: any) => void;
+  updateFormData: (field: string, value:string|string[]) => void;
   formData: formDataType;
 };
 
@@ -27,4 +30,27 @@ export interface ProviderCardProps {
     rating: number;
     bio: string;
     name: string;
+}
+
+export type ProviderProfile = {
+  user: {
+    name: string;
+    email: string;
+    password: string;
+    id: string;
+    role: Role;
+    createdAt: Date;
+    updatedAt: Date;
+  };
+  services: string[];
+  id: string;
+  userId: string;
+  rate: number;
+  locations: string[];
+  bio: string;
+};
+
+
+export interface errotype{
+  messaege:string
 }

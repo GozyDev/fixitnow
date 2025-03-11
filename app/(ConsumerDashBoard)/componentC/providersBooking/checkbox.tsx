@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-export default function Checkbox({services}:any) {
-  const [service, setService] = useState(services);
+export default function Checkbox({services}:{services:string[]}) {
+  const [service] = useState<string[]>(services);
   return (
     <>
       {service.map((list:string) => (

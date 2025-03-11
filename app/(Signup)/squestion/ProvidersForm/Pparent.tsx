@@ -6,7 +6,7 @@ import { formDataType } from "@/lib/type";
 type PropData = {
   nextStep:()=>void
   prevStep:()=>void
-  updateFormData:(field: string, value: any)=>void
+  updateFormData:(field: string, value:string|string[])=>void
   formData:formDataType 
   ProvidersServices:(value:string,checked:boolean) =>  void
 }

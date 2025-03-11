@@ -13,7 +13,7 @@ type PropData = {
   prevStep: () => void;
 };
 export default function StepFour({ formData, prevStep }:PropData) {
-  const router = useRouter();
+  // const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -44,8 +44,8 @@ export default function StepFour({ formData, prevStep }:PropData) {
         //   );
         // }, 1500);
       }
-    } catch (err: any) {
-      setError(err.message || "An unexpected error occurred");
+    } catch (err) {
+      setError("An unexpected error occurred");
     } finally {
       setLoading(false);
     }

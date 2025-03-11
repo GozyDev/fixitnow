@@ -7,7 +7,7 @@ import StepFour from "@/app/(Signup)/squestion/StepFour";
 import Pparent from "@/app/(Signup)/squestion/ProvidersForm/Pparent";
 import { formDataType } from "@/lib/type";
 
-export default function signup() {
+export default function Signup() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<formDataType>({
     role: "",
@@ -32,7 +32,7 @@ export default function signup() {
     }
   }
 
-  function updateFormData(field: string, value: any) {
+  function updateFormData(field: string, value:string|string[]) {
     setFormData((prev) => ({ ...prev, [field]: value }));
   }
 

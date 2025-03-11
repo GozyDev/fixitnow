@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { errotype } from "@/lib/type";
 
 export async function POST(req: Request) {
   try {
@@ -61,8 +62,8 @@ export async function POST(req: Request) {
       message: "Success Full registered",
       status: 200,
     });
-  } catch (error: any) {
-    return NextResponse.json({ message: error.message || "An unexpected error occurred" });
+  } catch (error) {
+    return NextResponse.json({ message: error || "An unexpected error occurred" });
   }
   
 }

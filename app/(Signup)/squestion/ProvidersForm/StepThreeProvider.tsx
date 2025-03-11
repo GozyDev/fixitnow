@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExclamationCircleIcon, CurrencyDollarIcon, MapPinIcon, WrenchIcon } from "@heroicons/react/24/outline";
+import { ExclamationCircleIcon, CurrencyDollarIcon, MapPinIcon} from "@heroicons/react/24/outline";
 import { PropData } from "@/lib/type";
 
 export default function StepThreeProvider({

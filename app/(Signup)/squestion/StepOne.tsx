@@ -1,7 +1,7 @@
 import Link from "next/link";
 type PropData = {
   nextStep: () => void;
-  updateFormData: (field: string, value: any) => void;
+  updateFormData: (field: string, value:string) => void;
 };
 export default function StepOne({ nextStep, updateFormData }: PropData) {
   function handleRoleSelect(role: string) {

@@ -1,25 +1,10 @@
 "use client";
 import { useState } from "react";
 import Checkbox from "./checkbox";
-export default function ProvidersBookingForm({ provider }: any) {
-  const [BookingDetail,setBookingDetail] = useState({
-    pname:"",
-    services:[],
-    date:"",
-    location:"",
-    time:"",
-    note:"",
-  })
+import {ProviderProfile} from  "@/lib/type"
 
-  function updateState(feild:string,value:string){
-    setBookingDetail(prev => (
-      {...prev,[feild]:value}
-    ))
-  }
+export default function ProvidersBookingForm({ provider }:{provider:ProviderProfile}) {
 
-function sayingHello(){
-  console.log("Enter your address")
-}
   return (
     <>
       <div className="min-h-screen bg-gradient-to-br from-purple-50/30 to-white py-12 px-4 sm:px-6 lg:px-8">
@@ -66,7 +51,7 @@ function sayingHello(){
                   type="date"
                   id="date"
                   className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"
-                  onChange={(e)=> updateState("date","date")}
+                  
                 />
               </div>
               <div className="space-y-2">
@@ -97,7 +82,6 @@ function sayingHello(){
                 id="location"
                 placeholder="Enter your address"
                 className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all"
-                onChange={sayingHello}
               />
             </div>
 
