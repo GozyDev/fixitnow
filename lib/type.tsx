@@ -1,6 +1,4 @@
 import { Role } from '@prisma/client';
-import exp from 'constants';
-
 export type formDataType = {
   role: string;
   name: string;

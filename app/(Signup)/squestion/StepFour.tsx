@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { errotype } from "@/lib/type";
+// import { useRouter } from "next/navigation";
 import {
   CheckCircleIcon,
   ArrowLeftIcon,
@@ -44,8 +45,8 @@ export default function StepFour({ formData, prevStep }:PropData) {
         //   );
         // }, 1500);
       }
-    } catch (err) {
-      setError("An unexpected error occurred");
+    } catch (err:unknown) {
+      alert(err);
     } finally {
       setLoading(false);
     }

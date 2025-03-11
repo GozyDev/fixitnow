@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
-import { errotype } from "@/lib/type";
+import { NextResponse} from "next/server";
+
 
 export async function POST(req: Request) {
   try {
