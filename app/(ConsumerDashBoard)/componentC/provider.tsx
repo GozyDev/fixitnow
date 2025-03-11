@@ -1,20 +1,7 @@
 import { useRouter } from "next/navigation";
 import { StarIcon } from "@heroicons/react/20/solid";
-
-type ProviderCardProps = {
-  provider: {
-    userId: string;
-    id: string;
-    services: string[];
-    rate: number;
-    locations: string[];
-    rating: number;
-    bio: string;
-    name: string;
-  };
-};
-
-export default function ProviderCard({ provider }: ProviderCardProps) {
+import {ProviderCardProps} from "@/lib/type"
+export default function ProviderCard( { provider}:{provider:ProviderCardProps} ) {
   const router = useRouter();
 
   const handleClick = () => {

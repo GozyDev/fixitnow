@@ -4,18 +4,19 @@ import { useEffect, useState } from "react";
 import ProviderCard from "../componentC/provider";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { Spinner } from "@material-tailwind/react";
+import { ProviderCardProps } from "@/lib/type";
 
 export default function BookingPage() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [providers, setProviders] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [providers, setProviders] = useState<ProviderCardProps[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     async function getProviders() {
       try {
         setIsLoading(true);
         const res = await fetch(`/api/providers?search=${searchQuery}`);
-        const data = await res.json();
+        const data:ProviderCardProps[] = await res.json();
         if (res.ok) setProviders(data);
       } catch (error) {
         console.log(error);
@@ -55,7 +56,7 @@ export default function BookingPage() {
         <div className="space-y-6">
           {providers.length > 0 ? (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
-              {providers.map((provider: any) => (
+              {providers.map((provider) => (
                 <ProviderCard key={provider.id} provider={provider} />
               ))}
             </div>
