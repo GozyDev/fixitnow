@@ -8,14 +8,15 @@ import {
 } from "@heroicons/react/24/solid";
 
 interface ProviderProfilePageProps {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }
 
 export default async function ProviderProfilePage({
   params,
 }: ProviderProfilePageProps) {
+  // Now you can use params.id directly
   const provider = await prisma.providerProfile.findUnique({
-    where: { userId: (await params).id },
+    where: { userId: params.id },
     include: { user: true },
   });
 
@@ -52,7 +53,7 @@ export default async function ProviderProfilePage({
                   ${provider.rate}
                   <span className="text-sm font-medium text-gray-500">/hr</span>
                 </span>
-              </div>  
+              </div>
             </div>
           </div>
         </div>
@@ -86,8 +87,6 @@ export default async function ProviderProfilePage({
                 <p className="text-gray-600">{provider.locations.join(", ")}</p>
               </div>
             </div>
-
-            {/* Add more details here if needed */}
           </div>
         </div>
 
