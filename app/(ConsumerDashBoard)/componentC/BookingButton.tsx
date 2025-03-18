@@ -9,7 +9,7 @@ export default function BookingButton({providerID}:{providerID:string}) {
   }
   return (
     <button
-      className="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
+      className=" w-full px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
       onClick={handleRoute}
     >
       Book Now

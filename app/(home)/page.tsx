@@ -13,11 +13,11 @@ export default function HomePage() {
         {/* Content Container */}
         <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-sm border border-white/20 p-8 space-y-6 flex flex-col">
           <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-            FixItNow Platform
+          Handy Platform
           </h1>
-          
+
           <p className="text-xl text-gray-600">
-            We are  crafting something amazing! 
+            We are crafting something amazing!
             <span className="block mt-2 text-sm text-gray-500">
               Stay tuned for our official launch
             </span>

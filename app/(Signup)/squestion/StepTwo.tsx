@@ -1,149 +1,88 @@
 "use client";
 import { useState } from "react";
-import { ExclamationCircleIcon } from "@heroicons/react/24/outline";
+import { ExclamationCircleIcon, UserCircleIcon, EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import { PropData } from "@/lib/type";
 
-export default function StepTwo({
-  nextStep,
-  prevStep,
-  updateFormData,
-  formData,
-}: PropData) {
-  const [error, setError] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+export default function StepTwo({ nextStep, prevStep, updateFormData, formData }: PropData) {
+  const [error, setError] = useState({ name: "", email: "", password: "" });
 
   function validateBeforeNext() {
     const newError = {
-      name: "",
-      email: "",
-      password: "",
+      name: !formData.name.trim() ? "Please enter your full name" : "",
+      email: !formData.email.trim() ? "Please enter a valid email address" : "",
+      password: !formData.password.trim() ? "Password must be at least 6 characters" : ""
     };
 
-    if (!formData.name.trim()) {
-      newError.name = "Please enter your full name";
-    }
-    if (!formData.email.trim()) {
-      newError.email = "Please enter a valid email address";
-    }
-    if (!formData.password.trim()) {
-      newError.password = "Password must be at least 6 characters";
-    }
-
     setError(newError);
-
-    if (!Object.values(newError).some((err) => err)) {
-      nextStep();
-    }
+    if (!Object.values(newError).some(err => err)) nextStep();
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50/30 to-white flex flex-col justify-center items-center p-4">
-      <div className="max-w-md w-full space-y-8  pt-[10px]">
-        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-sm border border-white/20 p-6 space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50/30 to-white flex items-center justify-center p-4">
+      <div className="w-full max-w-md space-y-6">
+        <div className="bg-white/95 backdrop-blur-lg rounded-2xl shadow-xl border border-purple-100/30 p-8 space-y-6">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+              Create Account
+            </h2>
+            <p className="text-gray-600 mt-2">Join our community of professionals and clients</p>
+          </div>
+
           {/* Name Input */}
           <div className="space-y-2">
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Full Name
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Full Name</label>
             <div className="relative">
+              <UserCircleIcon className="w-5 h-5 text-gray-400 absolute left-3 top-3.5" />
               <input
-                id="name"
-                type="text"
-                placeholder="Joe Smith"
                 value={formData.name}
                 onChange={(e) => updateFormData("name", e.target.value)}
-                className={`w-full px-4 py-3 rounded-lg border ${
+                className={`w-full pl-10 pr-4 py-3 rounded-lg border ${
                   error.name ? "border-red-300" : "border-gray-200"
-                } focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all`}
+                } focus:ring-2 focus:ring-purple-500 transition-all`}
+                placeholder="John Doe"
               />
-              {error.name && (
-                <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-                  <ExclamationCircleIcon className="w-5 h-5 text-red-500" />
-                </div>
-              )}
+              {error.name && <InputError message={error.name} />}
             </div>
-            {error.name && (
-              <p className="text-sm text-red-600 flex items-center gap-1">
-                <ExclamationCircleIcon className="w-4 h-4" />
-                {error.name}
-              </p>
-            )}
           </div>
 
           {/* Email Input */}
           <div className="space-y-2">
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Email Address
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Email Address</label>
             <div className="relative">
+              <EnvelopeIcon className="w-5 h-5 text-gray-400 absolute left-3 top-3.5" />
               <input
-                id="email"
                 type="email"
-                placeholder="example@gmail.com"
                 value={formData.email}
                 onChange={(e) => updateFormData("email", e.target.value)}
-                className={`w-full px-4 py-3 rounded-lg border ${
+                className={`w-full pl-10 pr-4 py-3 rounded-lg border ${
                   error.email ? "border-red-300" : "border-gray-200"
-                } focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all`}
+                } focus:ring-2 focus:ring-purple-500 transition-all`}
+                placeholder="john@example.com"
               />
-              {error.email && (
-                <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-                  <ExclamationCircleIcon className="w-5 h-5 text-red-500" />
-                </div>
-              )}
+              {error.email && <InputError message={error.email} />}
             </div>
-            {error.email && (
-              <p className="text-sm text-red-600 flex items-center gap-1">
-                <ExclamationCircleIcon className="w-4 h-4" />
-                {error.email}
-              </p>
-            )}
           </div>
 
           {/* Password Input */}
           <div className="space-y-2">
-            <label
-              htmlFor="pass"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Password
-            </label>
+            <label className="block text-sm font-medium text-gray-700">Password</label>
             <div className="relative">
+              <LockClosedIcon className="w-5 h-5 text-gray-400 absolute left-3 top-3.5" />
               <input
-                id="pass"
                 type="password"
-                placeholder="••••••••"
                 value={formData.password}
                 onChange={(e) => updateFormData("password", e.target.value)}
-                className={`w-full px-4 py-3 rounded-lg border ${
+                className={`w-full pl-10 pr-4 py-3 rounded-lg border ${
                   error.password ? "border-red-300" : "border-gray-200"
-                } focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all`}
+                } focus:ring-2 focus:ring-purple-500 transition-all`}
+                placeholder="••••••••"
               />
-              {error.password && (
-                <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-                  <ExclamationCircleIcon className="w-5 h-5 text-red-500" />
-                </div>
-              )}
+              {error.password && <InputError message={error.password} />}
             </div>
-            {error.password && (
-              <p className="text-sm text-red-600 flex items-center gap-1">
-                <ExclamationCircleIcon className="w-4 h-4" />
-                {error.password}
-              </p>
-            )}
           </div>
 
           {/* Navigation Buttons */}
-          <div className="flex gap-4 pt-4">
+          <div className="flex gap-4 pt-6">
             <button
               onClick={prevStep}
               className="flex-1 px-4 py-3 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-50 transition-all"
@@ -162,3 +101,10 @@ export default function StepTwo({
     </div>
   );
 }
+
+const InputError = ({ message }: { message: string }) => (
+  <div className="absolute inset-y-0 right-3 flex items-center animate-fade-in">
+    <ExclamationCircleIcon className="w-5 h-5 text-red-500" />
+    <span className="sr-only">{message}</span>
+  </div>
+);

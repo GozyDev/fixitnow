@@ -1,7 +1,12 @@
 import { useRouter } from "next/navigation";
-import { StarIcon } from "@heroicons/react/20/solid";
-import {ProviderCardProps} from "@/lib/type"
-export default function ProviderCard( { provider}:{provider:ProviderCardProps} ) {
+import { StarIcon, UserCircleIcon } from "@heroicons/react/20/solid";
+import { ProviderCardProps } from "@/lib/type";
+
+export default function ProviderCard({
+  provider,
+}: {
+  provider: ProviderCardProps;
+}) {
   const router = useRouter();
 
   const handleClick = () => {
@@ -17,53 +22,70 @@ export default function ProviderCard( { provider}:{provider:ProviderCardProps} )
       <div className="absolute inset-0 bg-gradient-to-br from-white/50 to-purple-100/20 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity duration-300" />
 
       <div className="relative flex gap-4">
-        {/* Left Column - Rating & Rate */}
-        <div className="flex flex-col items-start w-24">
-          <div className="flex items-center gap-1.5 bg-purple-500/10 px-3 py-1 rounded-full">
-            <StarIcon className="w-4 h-4 text-purple-600" />
-            <span className="text-sm font-semibold text-purple-600">
-              {provider.rating}
-            </span>
-          </div>
-
-          <div className="mt-4">
-            <p className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              ${provider.rate}
-              <span className="text-sm font-medium text-gray-400">/hr</span>
-            </p>
+        {/* Left Column - Image Placeholder */}
+        <div className="flex-shrink-0 w-24 h-24">
+          <div className="w-full h-full rounded-full bg-gray-100 flex items-center justify-center">
+            <UserCircleIcon className="w-12 h-12 text-gray-400 group-hover:text-purple-500 transition-colors" />
           </div>
         </div>
 
         {/* Right Column - Main Content */}
         <div className="flex-1">
-          <h2 className="text-xl font-semibold text-gray-900 mb-1.5">
-            {provider.name}
-          </h2>
+          <div className="flex flex-col gap-4">
+            {/* Top Section */}
+            <div className="flex justify-between items-start">
+              <div>
+                <h2 className="text-xl font-semibold text-gray-900 mb-1">
+                  {provider.name}
+                </h2>
+                <div className="flex items-center gap-2 text-sm text-gray-500">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 text-purple-500"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>{provider.locations.join(", ")}</span>
+                </div>
+              </div>
+              
+              {/* Rating & Rate */}
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5 bg-purple-500/10 px-3 py-1 rounded-full">
+                  <StarIcon className="w-4 h-4 text-purple-600" />
+                  <span className="text-sm font-semibold text-purple-600">
+                    {provider.rating}
+                  </span>
+                </div>
+                <p className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                  ${provider.rate}
+                  <span className="text-sm font-medium text-gray-400">/hr</span>
+                </p>
+              </div>
+            </div>
 
-          <div className="flex flex-wrap items-center gap-2 mb-3">
-            <span className="px-2.5 py-1 bg-emerald-100/50 text-emerald-800 text-sm rounded-full">
-              {provider.services.join(" • ")}
-            </span>
-          </div>
+            {/* Services */}
+            <div className="flex flex-wrap items-center gap-2">
+              {provider.services.map((service) => (
+                <span 
+                  key={service} 
+                  className="px-3 py-1.5 bg-purple-100/50 text-purple-700 text-sm rounded-full font-medium"
+                >
+                  {service}
+                </span>
+              ))}
+            </div>
 
-          <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-2">
-            {provider.bio}
-          </p>
-
-          <div className="flex items-center gap-2 text-sm text-gray-500">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 text-purple-500"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                clipRule="evenodd"
-              />
-            </svg>
-            <span>{provider.locations.join(", ")}</span>
+            {/* Bio */}
+            <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">
+              {provider.bio}
+            </p>
           </div>
         </div>
       </div>

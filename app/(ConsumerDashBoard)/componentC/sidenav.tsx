@@ -10,41 +10,44 @@ const navigations = [
   { 
     name: "Home", 
     href: "/consumer-dashboard",
-    icon: <HomeIcon className="w-5 h-5" />
+    icon: HomeIcon,
   },
   { 
     name: "Browse Services", 
     href: "/browse-services",
-    icon: <MagnifyingGlassIcon className="w-5 h-5" />
+    icon: MagnifyingGlassIcon,
   },
   { 
-    name: "My Booking", 
+    name: "My Bookings", 
     href: "/booking",
-    icon: <CalendarIcon className="w-5 h-5" />
+    icon: CalendarIcon,
   },
   { 
     name: "Profile", 
     href: "/profile",
-    icon: <UserCircleIcon className="w-5 h-5" />
+    icon: UserCircleIcon,
   },
 ];
 
 export default function SideNav() {
   return (
-    <>
-      {navigations.map((nav) => (
-        <li key={nav.name} className="">
-          <Link
-            href={nav.href}
-            className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-purple-100 hover:bg-white/10 transition-all duration-200 hover:text-white group"
-          >
-            <span className="[&>svg]:text-purple-300 [&>svg]:group-hover:text-white">
-              {nav.icon}
-            </span>
-            <span className="font-medium text-base">{nav.name}</span>
-          </Link>
-        </li> 
-      ))}
-    </>
+    <ul className="space-y-7">
+      {navigations.map((nav) => {
+        const Icon = nav.icon;
+        return (
+          <li key={nav.name}>
+            <Link
+              href={nav.href}
+              className="flex items-center gap-2 rounded-xl text-purple-100 hover:bg-white/10 hover:text-purple-600 transition-colors duration-300 group focus:outline-none focus:ring-2 focus:ring-white/30 focus:bg-white/10"
+            >
+              <Icon className="w-8 h-8 text-purple-800 group-hover:text-purple-600 transition-colors" />
+              <span className="font-medium text-purple-600 text-md tracking-wide">
+                {nav.name}
+              </span>
+            </Link>
+          </li>
+        );
+      })}
+    </ul>
   );
 } 
